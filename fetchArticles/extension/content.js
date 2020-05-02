@@ -10,7 +10,7 @@ function unicodeToChar(text) {
 	      });
 }
 
-googleCloudFunction = "https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight"
+const googleCloudFunction = "https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight"
 
 // With the response I want to open a popup to display the results
 
