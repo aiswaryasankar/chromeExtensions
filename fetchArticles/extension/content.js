@@ -1,7 +1,9 @@
 // Calls fetch with the url and the document text
 // On response it populates the article text with the highlighting
 
-var text = document.body.innerText
+alert("Calling content.js");
+
+var text = document.body.innerText;
 
 function unicodeToChar(text) {
 	return text.replace(/\\u[\dA-F]{4}/gi, 
@@ -10,7 +12,7 @@ function unicodeToChar(text) {
 	      });
 }
 
-const googleCloudFunction = "https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight"
+const googleCloudFunction = "https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight";
 
 // With the response I want to open a popup to display the results
 

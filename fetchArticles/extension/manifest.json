@@ -3,7 +3,7 @@
 	"name": "FetchRelatedArticles",
 	"version": "0.7.5",
 	"permissions": 
-		["activeTab", "https://us-central1-texthighlight-274101.cloudfunctions.net/fetchRelatedArticles"],
+		["activeTab", "https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight"],
 	"description": "Displays links to relevant articles to the current article",
 	// TODO: add a new icon for this
 	"icons": {"128": "icon128.png" },
