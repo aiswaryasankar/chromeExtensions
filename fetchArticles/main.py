@@ -22,6 +22,5 @@ def generate_summary(request):
     for i, v in enumerate(summary_list):
         summary_list[i] = v.strip() + '.'
     summary_list.remove('.')
-    
-    return json.dumps(summary_list)
 
+    return json.dumps(summary_list) 

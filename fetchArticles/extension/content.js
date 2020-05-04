@@ -1,9 +1,4 @@
-// Calls fetch with the url and the document text
-// On response it populates the article text with the highlighting
-
-alert("Calling content.js");
-
-var text = document.body.innerText;
+alert("Generating summary highlights. This may take up to 30 seconds depending on length of article.");
 
 function unicodeToChar(text) {
 	return text.replace(/\\u[\dA-F]{4}/gi, 
@@ -12,26 +7,24 @@ function unicodeToChar(text) {
 	      });
 }
 
-const googleCloudFunction = "https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight";
+// capture all text
+var textToSend = document.body.innerText;
+// var urlToSend = window.location.href;
 
-// With the response I want to open a popup to display the results
+// summarize and send back
+const api_url = 'https://us-central1-texthighlight-274101.cloudfunctions.net/sentenceHighlight';
 
-fetch(
-	googleCloudFunction, {
-		method: 'POST',
-		body: JSON.stringify(text),
-		headers: {
-			"Context-Type": 'application/json'
-		} 
-	}
-).then(response => { return response.json() })
-.then(res => {	
+fetch(api_url, {
+  method: 'POST',
+  body: JSON.stringify(textToSend),
+  headers:{
+    'Content-Type': 'application/json'
+  } })
+.then(data => { return data.json() })
+.then(res => { 
 	$.each(res, function( index, value ) {
 		value = unicodeToChar(value).replace(/\\n/g, '');
-		document.body.innerHTML = document.body.innerHTML.split(value).join('<span style="background-color: #fff799;">' + value + '</span><span class="tooltiptext">'Similar sentence'</span>');
+		document.body.innerHTML = document.body.innerHTML.split(value).join('<span style="background-color: #fff799;">' + value + '</span>');
 	});
-}).catch(error => console.error('Error: ', error));
-
-
-
-
+ })
+.catch(error => console.error('Error:', error));
